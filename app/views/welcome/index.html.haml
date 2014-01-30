@@ -1,7 +1,15 @@
 - if @user
 	= button_to('Sign Out', destroy_user_session_path, method: :delete)
+	= button_to('Add Product', new_product_path, method: :get)
+	= button_to('Profile', '/profile', method: :get)
 - else
 	= button_to('Sign Up', new_user_registration_path, method: :get)
 	= button_to('Sign In', new_user_session_path, method: :get)
 %h1
-	= "Welcome #{@user ? @user.email : ''}"
+	= "Welcome #{@user ? @user.first_name : ''}"
+- if @user
+	= image_tag(@user.profile.image.url(:large))
+
+%form{action: '/products/search', method: 'get'}
+	%input{type: 'text', name: 'query'}
+	%input{type: 'submit', value: 'Search'}

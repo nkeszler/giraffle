@@ -2,6 +2,14 @@ Giraffle::Application.routes.draw do
   root 'welcome#index'
   devise_for :users
 
+  resources :products do 
+    collection do 
+      get :search
+    end
+  end
+
+  resource :profile
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

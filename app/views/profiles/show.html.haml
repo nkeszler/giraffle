@@ -1,0 +1,18 @@
+= button_to('Edit', edit_profile_path, method: :get)
+%h1
+	= @user.first_name
+%h2
+	= @user.email
+%img{src: @user.profile.image.url(:medium)}
+%h3
+	= "Seller Rating: #{@user.profile.seller_rating}"
+%br
+- @user.products.each do |product|
+	%h2 
+		= product.title
+	%h3
+		= product.price
+	%h3
+		= product.description
+
+	 
